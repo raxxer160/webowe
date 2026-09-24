@@ -11,6 +11,7 @@ const umiejetnosci = [
 
 const formularz = document.querySelector("#formularz-kontakt");
 const komunikat = document.querySelector("#komunikat");
+const przycisk = document.querySelector("#przelacznik-motywu");
 
 function pokazKomunikat(tresc, rodzaj) {
   komunikat.textContent = tresc;
@@ -58,4 +59,11 @@ formularz.addEventListener("submit", function (e) {
     temat: temat,
     tresc: tresc
   });
+})
+
+przycisk.addEventListener("click", function () {
+  const jestCiemny = document.body.classList.toggle("ciemny");
+
+  if (jestCiemny) { przycisk.textContent = "Jasny motyw"; }
+  else { przycisk.textContent = "Ciemny motyw" }
 })
