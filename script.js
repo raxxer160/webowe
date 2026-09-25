@@ -9,12 +9,25 @@ const podsumowanieEL = document.querySelector("#podsumowanie");
 const filtryEL = document.querySelector("#filtry");
 const inspiracjeEl = document.querySelector("#inspiracje");
 
+/**
+ * funkcja pokazuje wskazana tresc o danym rodzaje w divie komunikat
+ *
+ * @param {string} tresc - tresc komunikatu
+ * @param {string} rodzaj - rodzaj komunikatu
+ * @returns {void}
+ */
 const pokazKomunikat = (tresc, rodzaj) => {
   komunikat.textContent = tresc;
   komunikat.classList.remove("blad", "sukces");
   komunikat.classList.add(rodzaj);
 }
 
+/**
+ * funkcja wypelnia diva listaEL funkcja budujaca liste o odpowiedniej kategorii oraz wypelnia pole na podsumowanie
+ *
+ * @param {string} kategoria - kategoria umiejetnosci
+ * @returns {void}
+ */
 const pokazUmiejetnosci = (kategoria = "wszystkie") => {
   const wybrane = filtrujPoKategorii(umiejetnosci, kategoria);
   listaEL.innerHTML = budujListe(wybrane);
@@ -69,12 +82,24 @@ przycisk.addEventListener("click", () => {
   else { przycisk.textContent = "Ciemny motyw" }
 })
 
+/**
+ * pobiera liste uzytkownikow z publicznego api
+ *
+ * @param {string} adres - adres linku api
+ * @returns {Promise<Array<Object>?} - zwraca liste obiektow pobrana z api
+ * @throws {Error} - gdy serwer nie odpowiedzial poprawnie
+ */
 const pobierzUzytkownikow = async (adres) => {
   const odpowiedz = await fetch(adres);
   if (!odpowiedz.ok) { throw new Error(`Serwer odpowiedzial: ${odpowiedz.status}`); }
   return odpowiedz.json();
 }
 
+/**
+ * funckja wypelnia diva inspiracjeEl pobranymi z api informacjami
+ *
+ * @returns {void}
+ */
 const pokazInspiracje = async () => {
   inspiracjeEl.innerHTML = `<p class="ladowanie">Ladowanie...</p>`
 
