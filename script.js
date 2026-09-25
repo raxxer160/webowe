@@ -12,6 +12,7 @@ const umiejetnosci = [
 const formularz = document.querySelector("#formularz-kontakt");
 const komunikat = document.querySelector("#komunikat");
 const przycisk = document.querySelector("#przelacznik-motywu");
+const listaEL = document.querySelector("#lista-umiejetnosci");
 
 const pokazKomunikat = (tresc, rodzaj) => {
   komunikat.textContent = tresc;
@@ -19,16 +20,16 @@ const pokazKomunikat = (tresc, rodzaj) => {
   komunikat.classList.add(rodzaj);
 }
 
-const pokazUmiejetnosci = (lista) => {
-  const kontener = document.querySelector("#lista-umiejetnosci");
-  for (const nazwa of lista) {
-    const element = document.createElement("li");
-    element.textContent = nazwa;
-    kontener.appendChild(element);
-  }
-}
+const budujListe = lista =>
+  lista.map(({ nazwa, poziom }) => `
+    <li>
+      <span class="nazwa">${nazwa}</span>
+      <span class="poziom" title="Poziom ${poziom} z 5">
+      ${"●".repeat(poziom)}${"○".repeat(5 - poziom)}</span>
+    </li>
+    `).join("");
 
-pokazUmiejetnosci(umiejetnosci);
+listaEL.innerHTML = budujListe(umiejetnosci);
 
 formularz.addEventListener("submit", (e) => {
   e.preventDefault();
