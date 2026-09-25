@@ -9,4 +9,4 @@ export const umiejetnosci = [
   { nazwa: "C#", poziom: 2, kategoria: "backend" }
 ];
 
-export const adres_api = "http://127.0.0.1/lb1-mb04";
+export const adres_api = "https://jsonplaceholder.typicode.com/users";

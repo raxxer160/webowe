@@ -193,3 +193,30 @@ body.ciemny textarea {
     color: #555555;
     font-size: 14px;
 }
+.ladowanie {
+    color: #777777;
+    font-style: italic;
+}
+#inspiracje .blad {
+    color: #b02a2a;
+    font-weight: bold;
+}
+.osoby {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+}
+.osoby li {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    padding: 10px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+.osoby span {
+    font-size: 14px;
+    color: #777777;
+}
