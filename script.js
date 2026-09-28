@@ -12,7 +12,8 @@ const Filtruj = lista =>
   lista.filter(({ ocena }) => ocena >= 4);
 
 const Podsumowanie = lista =>
-  `srednia ocena: ${lista.reduce((s, {ocena}) => s+=ocena, 0)/lista.length}`
+  `ilosc restauracji: ${lista.length} srednia ocena:
+  ${lista.reduce((s, { ocena }) => s += ocena, 0) / lista.length}`
 
 const res = Filtruj(restauracje);
 listaEl.innerHTML = budujListe(res);
