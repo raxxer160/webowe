@@ -17,7 +17,7 @@ const pokazListe = async () => {
 
 const dodajZadanie = async (tekst) => {
   if (!tekst || tekst.trim() === "") {
-    console.error(`Blad: podaj tresc zadania, np. npm run dodaj - "Kupic mleko"`);
+    console.error(`Blad: podaj tresc zadania, np. npm run dodaj -- "Kupic mleko"`);
     return;
   }
   const zadania = await wczytaj();
