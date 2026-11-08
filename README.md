@@ -6,8 +6,8 @@ więc przetrwają zamknięcie programu.
 
 ## Informacje o środowisku
 
-- System operacyjny: Windows 11
-- Środowisko programistyczne: Visual Studio Code
+- System operacyjny: CachyOS
+- Środowisko programistyczne: Zed
 - Języki i technologie: JavaScript, Node.js 20.11 lub nowszy
 
 ## Uruchomienie
