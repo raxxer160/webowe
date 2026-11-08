@@ -3,9 +3,9 @@ import path from "node:path";
 
 const PLIK = path.join(import.meta.dirname, "zadania.json");
 
-export const wzcytaj = async () => {
+export const wczytaj = async () => {
   try {
-    const tekst = await fs.readfile(PLIK, "utf-8");
+    const tekst = await fs.readFile(PLIK, "utf-8");
     return JSON.parse(tekst);
   }
   catch (blad) {
