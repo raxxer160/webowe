@@ -4,6 +4,10 @@ import { gry } from "./dane.js";
 const app = express();
 const PORT = 3000;
 
+
+/**
+ * GET / - strona powitalna z lista dostepnych adresow
+ */
 app.get("/", (req, res) => {
   res.send(`
       <h1>Katalog gier planszowych</h1>
@@ -16,10 +20,16 @@ app.get("/", (req, res) => {
     `);
 })
 
+/**
+ * GET /gry - lista wszystkich gier z katalogu
+ */
 app.get("/gry", (req, res) => {
   res.json(gry);
 })
 
+/**
+ * GET /gry/:id - wyszukiwanie jednej gry o podanym numerze, wyrzuci blad 404 w przypadku braku takiej gry
+ */
 app.get("/gry/:id", (req, res) => {
   const szukana = Number(req.params.id);
   const gra = gry.find((k) => k.id === szukana);
@@ -31,6 +41,9 @@ app.get("/gry/:id", (req, res) => {
   res.json(gra);
 })
 
+/**
+ * GET /szukaj?wydawca=&max=&gracze= - filtrowanie katalogu po podanych warunkach, brak parametrow skutkuje pelna lista gier
+ */
 app.get("/szukaj", (req, res) => {
   const { wydawca, max, gracze } = req.query;
   let wynik = gry;
@@ -47,6 +60,9 @@ app.get("/szukaj", (req, res) => {
   res.json(wynik);
 })
 
+/**
+ * GET /statystyki - liczba gier, ich srednia cena, oraz najdrozsza cena gra
+ */
 app.get("/statystyki", (req, res) => {
   const sumaCen = gry.reduce((suma, g) => suma += g.cena, 0);
   const srednia = sumaCen / gry.length;
