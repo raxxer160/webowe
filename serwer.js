@@ -31,6 +31,22 @@ app.get("/gry/:id", (req, res) => {
   res.json(gra);
 })
 
+app.get("/szukaj", (req, res) => {
+  const { wydawca, max, gracze } = req.query;
+  let wynik = gry;
+
+  if (max) {
+    wynik = wynik.filter((k) => k.cena <= Number(max));
+  }
+  if (wydawca) {
+    wynik = wynik.filter((k) => k.wydawca.toLowerCase() === wydawca.toLowerCase());
+  }
+  if (gracze) {
+    wynik = wynik.filter((k) => k.gracze >= Number(gracze));
+  }
+  res.json(wynik);
+})
+
 app.listen(PORT, () => {
   console.log(`Serwer dziala http://localhost:${PORT}`);
 })
