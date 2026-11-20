@@ -65,10 +65,12 @@ app.get("/statystyki", (req, res) => {
   })
 })
 
+/** GET /blad celowo zglasza blad; sluzy do sprawdzania obslugi bledow */
 app.get("/blad", () => {
   throw new Error("Testowy blad");
 })
 
+/** Nieznany adres: JSON dla tras z danymi, html dla reszty */
 app.use((req, res) => {
   const czyDane = ["/gry", "/szukaj", "statystyki"].some((p) => req.url.startsWith(p));
   if (czyDane) {
@@ -78,6 +80,7 @@ app.use((req, res) => {
   res.status(404).send("<h1>404 - nie ma takiej strony</h1>");
 })
 
+/** Blad w trasie: szczegoly do terminala, krotki komunikat do uzytkownika */
 app.use((err, req, res, next) => {
   console.error(`Blad: ${err.message}`);
   res.status(404).json({ blad: "Blad serwera" });
