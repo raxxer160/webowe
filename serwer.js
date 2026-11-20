@@ -65,6 +65,15 @@ app.get("/statystyki", (req, res) => {
   })
 })
 
+app.use((req, res) => {
+  const czyDane = ["/gry", "/szukaj", "statystyki"].some((p) => req.url.startsWith(p));
+  if (czyDane) {
+    res.status(404).json({ blad: "nie ma takiej trasy" });
+    return;
+  }
+  res.status(404).send("<h1>404 - nie ma takiej strony</h1>");
+})
+
 app.listen(PORT, () => {
   console.log(`Serwer dziala http://localhost:${PORT}`);
 })
